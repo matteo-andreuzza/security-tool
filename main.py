@@ -1,11 +1,9 @@
-from io import TextIOWrapper
 from morsepy import Morsepy
 import pybase64
 from gtts import gTTS
 import os
 import time
 import base64
-import pyperclip
 def txt_morse():
     txt = input("inserisci il testo da tradurre in morse")
     mors = Morsepy.encrypt(txt)
