@@ -48,6 +48,7 @@ def crp_dec_txt():
         for idx, s in enumerate(criciao):
             pp = "%s" % (s)
             print(pp,end='')
+        menu()
     elif x == '2':
         try:
             deco = base64.decodebytes(input("inserisci il messaggio da decriptare:..  ").encode('utf-8'))
@@ -58,6 +59,7 @@ def crp_dec_txt():
             for idx, s in enumerate(decodificato):
                 pp = "%s" % (s)
                 print(pp,end='')
+            menu()
         except:
             print("errore, riprova")
     else:
