@@ -1,19 +1,16 @@
 from morsepy import Morsepy
-import pybase64
 from gtts import gTTS
-import os
-import time
-import base64
+import pybase64,os,time,base64
 def txt_morse():
-    txt = input("inserisci il testo da tradurre in morse")
+    txt = input("inserisci il testo da tradurre in morse  ")
     mors = Morsepy.encrypt(txt)
     print(mors)
-    input('invio per tornare al menù')
+    input('invio per tornare al menù   ')
     menu()
 def morse_txt():
-    txt = input("inserisci il morse da tradurre in testo")
+    txt = input("inserisci il morse da tradurre in testo  ")
     print(Morsepy.decrypt(txt))
-    x = input('vuoi sentire il testo parlato? y/n')
+    x = input('vuoi sentire il testo parlato? y/n  ')
     if x == 'y':
         tts = gTTS(Morsepy.decrypt(txt))
         tts.save('audio.mp3')
@@ -22,7 +19,7 @@ def morse_txt():
         os.popen("audio.mp3")
         time.sleep(5)
         os.popen('del audio.mp3')
-    sel = input("vuoi criptare il testo tradotto? (y/n))")
+    sel = input("vuoi criptare il testo tradotto? (y/n))   ")
     if sel == 'y':
         criptato = base64.b64encode(Morsepy.decrypt(txt).encode('utf-8'))
         criciao = list(str(criptato))
@@ -36,9 +33,9 @@ def morse_txt():
     else:
         menu()
 def crp_dec_txt():
-    x = input('vuoi criptare o decriptare un messaggio? (1/2)')
+    x = input('vuoi criptare o decriptare un messaggio? (1/2)  ')
     if x == '1':
-        criptato = base64.b64encode(input('inserisci il messaggio da criptare').encode('utf-8'))
+        criptato = base64.b64encode(input('inserisci il messaggio da criptare' ).encode('utf-8'))
         criciao = list(str(criptato))
         del criciao[0]
         del criciao[0]
@@ -67,7 +64,7 @@ def menu():
     print('1 da testo a morse')
     print('2 da morse a testo')
     print('3 cripta e decripta testo')
-    x = input('scegli voce menù: (1/2/3)')
+    x = input('scegli voce menù: (1/2/3)  ')
     if x == '1':
         txt_morse()
     elif x == '2':
