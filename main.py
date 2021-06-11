@@ -2,9 +2,7 @@ from morsepy import Morsepy
 from gtts import gTTS
 import pybase64,os,time,base64
 def txt_morse():
-    txt = input("inserisci il testo da tradurre in morse  ")
-    mors = Morsepy.encrypt(txt)
-    print(mors)
+    print(Morsepy.encrypt(input("inserisci il testo da tradurre in morse  ")))
     input('invio per tornare al menù   ')
     menu()
 def morse_txt():
