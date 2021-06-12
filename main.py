@@ -1,16 +1,26 @@
 from morsepy import Morsepy
 from gtts import gTTS
 import pybase64,os,time,base64
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 def txt_morse():
-    print(Morsepy.encrypt(input("inserisci il testo da tradurre in morse  ")))
+    morse = Morsepy.encrypt(input("inserisci il testo da tradurre in morse  "))
+    print(morse)
+    x = input('vuoi ascoltare il morse? (y/n)  ')
+    if x == 'y':
+        Morsepy.beep(morse)
+        menu()
+    else:
+        menu()
     input('invio per tornare al menù   ')
     menu()
 def morse_txt():
     txt = input("inserisci il morse da tradurre in testo  ")
-    print(Morsepy.decrypt(txt))
+    morse = Morsepy.decrypt(txt)
+    print(morse)
     x = input('vuoi sentire il testo parlato? y/n  ')
     if x == 'y':
-        tts = gTTS(Morsepy.decrypt(txt))
+        tts = gTTS(morse)
         tts.save('audio.mp3')
         #sistema
         dir = os.getcwd()
@@ -19,7 +29,7 @@ def morse_txt():
         os.popen('del audio.mp3')
     sel = input("vuoi criptare il testo tradotto? (y/n))   ")
     if sel == 'y':
-        criptato = base64.b64encode(Morsepy.decrypt(txt).encode('utf-8'))
+        criptato = base64.b64encode(morse.encode('utf-8'))
         criciao = list(str(criptato))
         del criciao[0]
         del criciao[0]
@@ -28,9 +38,15 @@ def morse_txt():
             pp = "%s" % (s)
             print(pp,end='')
         menu()
+    ok = input('vuoi salvare un file con il testo tradotto? (y/n)   ')
+    if ok == 'y':
+        filename = input('inserisci il percorso di un file di testo (.txt)  ')
+        file = open(filename, 'w')
+        file.write(morse)
+        file.close()
     else:
         menu()
-def crp_dec_txt():
+def crp_dec_txt():  
     x = input('vuoi criptare o decriptare un messaggio? (1/2)  ')
     if x == '1':
         criptato = base64.b64encode(input('inserisci il messaggio da criptare' ).encode('utf-8'))
