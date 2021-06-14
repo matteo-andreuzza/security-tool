@@ -44,6 +44,8 @@ def morse_txt():
         file = open(filename, 'w')
         file.write(morse)
         file.close()
+        print('file salvato')
+        menu()
     else:
         menu()
 def crp_dec_txt():  
